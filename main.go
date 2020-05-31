@@ -26,7 +26,12 @@ func main() {
 	c := github.NewClient(nil)
 	gists, _, _ := c.Gists.List(context.Background(), *userPtr, &github.GistListOptions{})
 	for _, gist := range gists {
-		fmt.Printf("%v/%v - %v file(s)\n%v\n%v\n\n", gist.GetOwner().GetLogin(), getFilenames(gist.Files)[0], len(gist.Files), gist.GetUpdatedAt(), gist.GetDescription())
+		fmt.Printf("%v/%v - %v file(s)\n%v\n%v\n\n",
+			gist.GetOwner().GetLogin(),
+			getFilenames(gist.Files)[0],
+			len(gist.Files),
+			gist.GetHTMLURL(),
+			gist.GetDescription())
 	}
 }
 
